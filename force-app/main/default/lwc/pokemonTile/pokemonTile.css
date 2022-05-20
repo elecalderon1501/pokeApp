@@ -1,0 +1,15 @@
+.pokemon-tile {
+    border: 2 px solid #fa0303;
+    background-color: #fae8d2;
+    border-radius: .25rem;
+    display: block;
+  }
+  img.pokemon-tile{
+      background-color: #fa0303;
+  }
+  .pokemon-silhouette {
+    height: 100px;
+  }
+  .pokemon-tile-body {
+    background: white;
+  }
