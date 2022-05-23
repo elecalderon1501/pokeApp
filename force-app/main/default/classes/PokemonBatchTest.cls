@@ -244,4 +244,25 @@ public with sharing class PokemonBatchTest {
             System.debug('Error');
         }
     }
+
+    @isTest 
+    static void testError(){
+        pokLst.add(new Pokemon__c(name = 'https://pokeapi.co/api/v2/pokemonm/810'));
+
+        String body = 'Not Found';
+
+        PokemonBatchMock fakeResponse = new PokemonBatchMock(401, 'Error', body, null);
+
+        Test.setMock(HttpCalloutMock.class, fakeResponse);
+        Test.startTest();
+            PokemonBatch batch = new PokemonBatch(pokLst);
+            Database.executeBatch(batch, 1);
+        
+        try {
+            
+        } catch (Exception e) {
+            System.assert(false, 'Exception' + e);
+        }
+        Test.stopTest();
+    }
 }

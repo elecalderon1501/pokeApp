@@ -1,25 +1,17 @@
-//import { publish, MessageContext } from 'lightning/messageService';
-//import BEAR_LIST_UPDATE_MESSAGE from '@salesforce/messageChannel/BearListUpdate__c';
 import { NavigationMixin } from 'lightning/navigation';
 import { LightningElement, wire } from 'lwc';
-/** BearController.searchBears(searchTerm) Apex method */
 import searchPokemons from '@salesforce/apex/PokemonController.searchPokemons';
 export default class pokemonList extends NavigationMixin(LightningElement) {
 	
-//@wire(MessageContext) messageContext;
 searchTerm = '';
-@wire(searchPokemons, {searchTerm: '$searchTerm'})
-	
-	pokemons;			
-// loadPokemons(result) {
-//   this.pokemons = result;
-//   if (result.data) {
-//     const message = {
-//       pokemons: result.data
-//     };
-//    // publish(this.messageContext, BEAR_LIST_UPDATE_MESSAGE, message);
-//   }
-// }
+tipo=null;
+generacion=null; 
+@wire(searchPokemons, {searchTerm: '$searchTerm', tipo: '$tipo', generacion: '$generacion'})	
+// @wire(searchPokemons, {searchTerm: '$searchTerm'})
+	pokemons;	
+	tipo;
+	generacion;		
+
 	handleSearchTermChange(event) {
 		// Debouncing this method: do not update the reactive property as
 		// long as this function is being called within a delay of 300 ms.
@@ -34,6 +26,7 @@ searchTerm = '';
 	get hasResults() {
 		return (this.pokemons.data.length > 0);
 	}
+	
 	handlePokemonView(event) {
 		// Get bear record id from bearview event
 		const pokemonId = event.detail;
@@ -47,35 +40,79 @@ searchTerm = '';
 			},
 		});
 	}
-}
+
 
 
 // Filtros generacion y tipo
-//     value = 'inProgress';
-//     get options() {
-//         return [
-//             { label: 'New', value: 'new' },
-//             { label: 'In Progress', value: 'inProgress' },
-//             { label: 'Finished', value: 'finished' },
-//         ];
-//     }
+    get tipos() {
+        return [
+            	{ label: 'Todos', value: null },
+				{ label: 'Normal', value: 'Normal' },
+				{ label: 'Fighting', value: 'Fighting' },
+				{ label: 'Flying', value: 'Flying' },
+				{ label: 'Poison', value: 'Poison' },
+				{ label: 'Ground', value: 'Ground' },
+				{ label: 'Bug', value: 'Bug' },
+				{ label: 'Ghost', value: 'Ghost' },
+				{ label: 'Steel', value: 'Steel' },
+				{ label: 'Fire', value: 'Fire' },
+				{ label: 'Water', value: 'Water' },
+				{ label: 'Grass', value: 'Grass' },
+				{ label: 'Electric', value: 'Electric' },
+				{ label: 'Psychic', value: 'Psychic' },
+				{ label: 'Ice', value: 'Ice' },
+				{ label: 'Dragon', value: 'Dragon' },
+				{ label: 'Dark', value: 'Dark' },
+				{ label: 'Fairy', value: 'Fairy' },
+				{ label: 'Rock', value: 'Rock' },
+        ];
+    }  
 
-//     handleChange(event) {
-//         this.value = event.detail.value;
-//     }
+    get generaciones() {
+        return [
+            { label: 'Todos', value: null },
+            { label: 'Primera', value: '1' },
+            { label: 'Segunda', value: '2' },
+			{ label: 'Tercera', value: '3' },
+			{ label: 'Cuarta', value: '4' },
+			{ label: 'Quinta', value: '5' },
+			{ label: 'Sexta', value: '6' },
+			{ label: 'Septima', value: '7' },
+			{ label: 'Octava', value: '8' },
+        ];
+    }
 
-//     value = 'inProgress';
-//     get options() {
-//         return [
-//             { label: 'New', value: 'new' },
-//             { label: 'In Progress', value: 'inProgress' },
-//             { label: 'Finished', value: 'finished' },
-//         ];
-//     }
+	handleTipoChange(event){
+        this.tipo= event.detail.value;
+        const selectEvent = new CustomEvent('pokemonlist', {
+            detail: {tipo:this.tipo,generacion:this.generacion}
 
-//     handleChange(event) {
-//         this.value = event.detail.value;
-//     }
+        });
 
-// }
+        this.dispatchEvent(selectEvent);
+
+
+    }
+	handleGeneracionChange(event){
+        this.generacion= event.detail.value;
+        const selectEvent = new CustomEvent('pokemonlist', {
+            detail: {tipo:this.tipo,generacion:this.generacion}
+        });
+        this.dispatchEvent(selectEvent);
+    }
+
+	handlePokeFilter(event){
+        this.tipo=event.detail.tipo;
+        this.generacion=event.detail.generacion;
+    }
+
+	// handleTipoChange(event){
+    //     this.tipo= event.detail.value;
+        
+    // }
+    // handleGeneracionChange(event) {
+    //     this.generacion = event.detail.value;
+         
+    // }	
+}
 

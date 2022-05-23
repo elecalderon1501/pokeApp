@@ -1,9 +1,11 @@
 <template>
 	<lightning-card title="Pokemons" >
 		<div class="slds-card__body_inner">
-			<!-- Start bear list -->
+			
 			<template if:true={pokemons.data}>
-                <lightning-input type="search"
+                <lightning-layout-item size = "4">
+					<!-- Search -->
+					<lightning-input type="search"
 					onchange={handleSearchTermChange}
 					variant="label-hidden"
 					class="slds-var-m-bottom_small"
@@ -13,65 +15,41 @@
 				</lightning-input>
 
                 <!-- filtro generacion -->
-                <!-- <lightning-combobox
-                    name="progress"
-                    label="Status"
+                <lightning-combobox
+                    name="generacion"
+                    label="Generacion"
                     value={value}
-                    placeholder="Select Progress"
-                    options={options}
-                    onchange={handleChange} >
+                    placeholder="Seleccione generacion"
+                    options={generaciones}
+                    onchange={handleGeneracionChange} >
                 </lightning-combobox>
 
-                <p>Selected value is: {value}</p> -->
+                <!-- <p>Selected value is: {value}</p>  -->
 
 
                 <!-- filtro tipo -->
-                <!-- <lightning-combobox
-                    name="progress"
-                    label="Status"
+                <lightning-combobox
+                    name="tipo"
+                    label="Tipo"
                     value={value}
-                    placeholder="Select Progress"
-                    options={options}
-                    onchange={handleChange} >
+                    placeholder="Seleccione tipo"
+                    options={tipos}
+                    onchange={handleTipoChange} >
                 </lightning-combobox>
 
-                <p>Selected value is: {value}</p> -->
+                <!-- <p>Selected value is: {value}</p>  -->
 
+				</lightning-layout-item>
+				<c-pokemon-List onpokefilter={handlePokeFilter}> </c-pokemon-List>
 
 				<lightning-layout multiple-rows="true" pull-to-boundary="small">
 					<template for:each={pokemons.data} for:item="pokemon">
 						<lightning-layout-item key={pokemon.PokeIndex__c} size="2" class="slds-var-p-around_x-small">
-							<c-pokemon-tile pokemon={pokemon} onpokemonview={handlePokemonView}></c-pokemon-tile>
-							<!-- <lightning-card title={pokemon.Name} class="pokemon-tile">
-								<div slot="actions">
-									<lightning-button-icon
-										icon-name="utility:search"
-										icon-class="pokemon-tile-button"
-										variant="bare"
-										alternative-text="Open record"
-										onclick={handleOpenRecordClick}>
-										<label></label>
-									</lightning-button-icon>
-								</div>
-								<div class="slds-var-p-horizontal_small pokemon-tile-body">
-									<div class="slds-media">
-										<div class="slds-media__figure">
-											<img src={pokemon.Foto_URL__C} alt="pokemon profile" class="pokemon-silhouette"/>
-										</div>
-										<div class="slds-media__body">
-											<p class="slds-var-m-bottom_xx-small">{pokemon.Name}</p>
-											<p class="slds-var-m-bottom_xx-small">{pokemon.PokeIndex__c} </p>
-											<p class="slds-var-m-bottom_xx-small">{pokemon.Altura__c} </p>
-											<p class="slds-var-m-bottom_xx-small">{pokemon.Peso__c} </p>
-											<p class="slds-var-m-bottom_xx-small">{pokemon.Tipo__c} </p>
-											<p class="slds-var-m-bottom_xx-small">{pokemon.Generacion__c} </p>
-										</div>
-									</div>
-								</div>
-							</lightning-card> -->
+							<c-pokemon-tile pokemon={pokemon} onpokemonview={handlePokemonView}></c-pokemon-tile>							
 						</lightning-layout-item>
 					</template>
 				</lightning-layout>
+				
                 <!-- No bears found -->
 <template if:false={hasResults}>
 	<div class="slds-align_absolute-center slds-var-m-vertical_small">
@@ -79,8 +57,7 @@
 	</div>
 </template>
 			</template>
-			<!-- End bear list -->
-			<!-- Data failed to load -->
+			
 			<template if:true={pokemons.error}>
 				<div class="slds-text-color_error">
 					An error occurred while loading the bear list
