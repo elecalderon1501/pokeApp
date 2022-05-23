@@ -1,52 +1,19 @@
 import { NavigationMixin } from 'lightning/navigation';
 import { LightningElement, wire } from 'lwc';
 import searchPokemons from '@salesforce/apex/PokemonController.searchPokemons';
+import getAllPokemons from '@salesforce/apex/pokemonController.getAllPokemons';
 export default class pokemonList extends NavigationMixin(LightningElement) {
-	
-searchTerm = '';
-tipo=null;
-generacion=null; 
-@wire(searchPokemons, {searchTerm: '$searchTerm', tipo: '$tipo', generacion: '$generacion'})	
-// @wire(searchPokemons, {searchTerm: '$searchTerm'})
+	tipo='Todos';
+	generacion='0'; 
+	searchTerm = '';
+	@wire(searchPokemons, {tipo: '$tipo', generacion: '$generacion', searchTerm: '$searchTerm'})	
 	pokemons;	
-	tipo;
-	generacion;		
-
-	handleSearchTermChange(event) {
-		// Debouncing this method: do not update the reactive property as
-		// long as this function is being called within a delay of 300 ms.
-		// This is to avoid a very large number of Apex method calls.
-		window.clearTimeout(this.delayTimeout);
-		const searchTerm = event.target.value;
-		// eslint-disable-next-line @lwc/lwc/no-async-operation
-		this.delayTimeout = setTimeout(() => {
-			this.searchTerm = searchTerm;
-		}, 300);
-	}
-	get hasResults() {
-		return (this.pokemons.data.length > 0);
-	}
 	
-	handlePokemonView(event) {
-		// Get bear record id from bearview event
-		const pokemonId = event.detail;
-		// Navigate to bear record page
-		this[NavigationMixin.Navigate]({
-			type: 'standard__recordPage',
-			attributes: {
-				recordId: pokemonId,
-				objectApiName: 'Pokemon__c',
-				actionName: 'view',
-			},
-		});
-	}
-
-
-
+	
 // Filtros generacion y tipo
     get tipos() {
         return [
-            	{ label: 'Todos', value: null },
+            	{ label: 'Todos', value: 'Todos' },
 				{ label: 'Normal', value: 'Normal' },
 				{ label: 'Fighting', value: 'Fighting' },
 				{ label: 'Flying', value: 'Flying' },
@@ -70,7 +37,7 @@ generacion=null;
 
     get generaciones() {
         return [
-            { label: 'Todos', value: null },
+            { label: 'Todos', value: '0' },
             { label: 'Primera', value: '1' },
             { label: 'Segunda', value: '2' },
 			{ label: 'Tercera', value: '3' },
@@ -82,37 +49,51 @@ generacion=null;
         ];
     }
 
-	handleTipoChange(event){
-        this.tipo= event.detail.value;
-        const selectEvent = new CustomEvent('pokemonlist', {
-            detail: {tipo:this.tipo,generacion:this.generacion}
+	
 
-        });
+	handleSearchTermChange(event) {
+		
+		window.clearTimeout(this.delayTimeout);
+		const searchTerm = event.target.value;
+		this.delayTimeout = setTimeout(() => {
+			this.searchTerm = searchTerm;
+		}, 300);
 
-        this.dispatchEvent(selectEvent);
+	}
+	handleTipoChange(event) {
+		
+		window.clearTimeout(this.delayTimeout);
+		const tipo = event.target.value;
+		this.delayTimeout = setTimeout(() => {
+			this.tipo = tipo;
+		}, 300);
+	}
+	handleGeneracionChange(event) {
+		
+		window.clearTimeout(this.delayTimeout);
+		const generacion = event.target.value;
+		this.delayTimeout = setTimeout(() => {
+			this.generacion = generacion;
+		}, 300);
+	}
 
-
-    }
-	handleGeneracionChange(event){
-        this.generacion= event.detail.value;
-        const selectEvent = new CustomEvent('pokemonlist', {
-            detail: {tipo:this.tipo,generacion:this.generacion}
-        });
-        this.dispatchEvent(selectEvent);
-    }
-
-	handlePokeFilter(event){
-        this.tipo=event.detail.tipo;
-        this.generacion=event.detail.generacion;
-    }
-
-	// handleTipoChange(event){
-    //     this.tipo= event.detail.value;
-        
-    // }
-    // handleGeneracionChange(event) {
-    //     this.generacion = event.detail.value;
-         
-    // }	
+	get hasResults() {
+		console.log(this.pokemons)
+		return (this.pokemons.data.length > 0);
+	}
+	handlePokemonView(event) {
+		// Get bear record id from bearview event
+		const pokemonId = event.detail;
+		// Navigate to bear record page
+		this[NavigationMixin.Navigate]({
+			type: 'standard__recordPage',
+			attributes: {
+				recordId: pokemonId,
+				objectApiName: 'Pokemon__c',
+				actionName: 'view',
+			},
+		});
+	}
+	
 }
 

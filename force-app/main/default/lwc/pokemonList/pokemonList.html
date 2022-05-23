@@ -18,7 +18,7 @@
                 <lightning-combobox
                     name="generacion"
                     label="Generacion"
-                    value={value}
+                    value={generacion}
                     placeholder="Seleccione generacion"
                     options={generaciones}
                     onchange={handleGeneracionChange} >
@@ -31,7 +31,7 @@
                 <lightning-combobox
                     name="tipo"
                     label="Tipo"
-                    value={value}
+                    value={tipo}
                     placeholder="Seleccione tipo"
                     options={tipos}
                     onchange={handleTipoChange} >
@@ -40,7 +40,6 @@
                 <!-- <p>Selected value is: {value}</p>  -->
 
 				</lightning-layout-item>
-				<c-pokemon-List onpokefilter={handlePokeFilter}> </c-pokemon-List>
 
 				<lightning-layout multiple-rows="true" pull-to-boundary="small">
 					<template for:each={pokemons.data} for:item="pokemon">
@@ -60,7 +59,7 @@
 			
 			<template if:true={pokemons.error}>
 				<div class="slds-text-color_error">
-					An error occurred while loading the bear list
+					An error occurred while loading the bear list {pokemons.error}
 				</div>
 			</template>
 		</div>
