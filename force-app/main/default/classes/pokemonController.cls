@@ -14,7 +14,7 @@ public with sharing class pokemonController {
             FROM Pokemon__c
             WITH SECURITY_ENFORCED
             ORDER BY PokeIndex__c
-            LIMIT 50
+            LIMIT 899
         ];
     }
 
