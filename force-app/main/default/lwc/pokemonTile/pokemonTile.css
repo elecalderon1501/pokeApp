@@ -1,15 +1,5 @@
-.pokemon-tile {
-    border: 2 px solid black;
-    background-color: #fae8d2;
-    border-radius: .25rem;
-    display: block;
-  }
-  img.pokemon-tile{
-      background-color: #fa0303;
-  }
-  
-  .pokemon-tile-body {
-    background: gray;
-    border-radius: 5px;
-    opacity: 0.8;
-  }
+   
+  .card-poke{
+  border-radius: 10%;
+  margin: 0;
+}

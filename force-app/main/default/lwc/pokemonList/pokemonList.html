@@ -1,69 +1,90 @@
 <template>
-	<lightning-card title="Pokemons" >
-		<div class="slds-card__body_inner">
-			
-			<template if:true={pokemons.data}>
-                <div class="slds-var-m-around_mediumdium">
-					<lightning-layout-item size = "4" >
-						<!-- Search -->
-						<lightning-input type="search"
-						onchange={handleSearchTermChange}
-						variant="label-hidden"
-						class="slds-var-m-bottom_small"
-						label="Search"
-						placeholder="Search for pokemons"
-						value={searchTerm}>
-					</lightning-input>
-	
-					<!-- filtro generacion -->
-					<lightning-combobox
-						name="generacion"
-						label="Generacion"
-						value={generacion}
-						placeholder="Seleccione generacion"
-						options={generaciones}
-						onchange={handleGeneracionChange} >
-					</lightning-combobox>
-	
-					<!-- <p>Selected value is: {value}</p>  -->
-	
-	
-					<!-- filtro tipo -->
-					<lightning-combobox
-						name="tipo"
-						label="Tipo"
-						value={tipo}
-						placeholder="Seleccione tipo"
-						options={tipos}
-						onchange={handleTipoChange} >
-					</lightning-combobox>
-	
-					<!-- <p>Selected value is: {value}</p>  -->
-					<div class="contador">Cant={pokemons.data.length}</div>
-					</lightning-layout-item >
-	
-				</div>
-				<lightning-layout multiple-rows="true" pull-to-boundary="small">
-					<template for:each={pokemons.data} for:item="pokemon" class="slds-grid slds-gutters">
-						<lightning-layout-item key={pokemon.PokeIndex__c} size="2" class="slds-var-p-around_x-small">
-							<c-pokemon-tile pokemon={pokemon} onpokemonview={handlePokemonView}></c-pokemon-tile>							
-						</lightning-layout-item>
-					</template>
-				</lightning-layout >
-				
-                <!-- No bears found -->
-<template if:false={hasResults}>
-	<div class="slds-align_absolute-center slds-var-m-vertical_small">
-		We did not find results...
-	</div>
-</template>
-			</template>
-			
-			<template if:true={pokemons.error}>
-				<div class="slds-text-color_error">
-					An error occurred while loading the bear list {pokemons.error}
-				</div>
-			</template>
-		</div>
-	</lightning-card>
+  <lightning-card title="Pokemons" >
+    <div class="slds-card__body_inner">
+      <template if:true={pokemons.data}>
+        <div class="slds-var-m-around_medium search-and-filter">
+          <lightning-layout-item class="search-and-filter">
+            <!-- Search -->
+            <div >
+              <lightning-input
+              type="search"
+              onchange={handleSearchTermChange}
+              variant="label-hidden"
+              class="slds-var-m-bottom_small search-and-filter"
+              label="Search"
+              placeholder="Search for pokemons"
+              value={searchTerm}
+            >
+            </lightning-input>
+            </div>
+
+            <!-- filtro generacion -->
+            <div>
+              <lightning-combobox
+              name="generacion"
+              label="Generacion"
+              value={generacion}
+              placeholder="Seleccione generacion"
+              options={generaciones}
+              onchange={handleGeneracionChange}
+              class="search-and-filter"
+              
+            >
+            </lightning-combobox>
+            </div>
+
+            <!-- <p>Selected value is: {value}</p>  -->
+
+            <!-- filtro tipo -->
+            <div >
+              <lightning-combobox
+              name="tipo"
+              label="Tipo"
+              value={tipo}
+              placeholder="Seleccione tipo"
+              options={tipos}
+              onchange={handleTipoChange}
+              class="search-and-filter"
+            >
+            </lightning-combobox>
+            </div>
+
+            <!-- <p>Selected value is: {value}</p>  -->
+            <div class="contador">Cant={pokemons.data.length}</div>
+          </lightning-layout-item>
+        </div>
+        <lightning-layout multiple-rows="true" pull-to-boundary="small">
+          <template
+            for:each={pokemons.data}
+            for:item="pokemon"
+            class="slds-grid slds-gutters"
+          >
+            <lightning-layout-item
+              key={pokemon.PokeIndex__c}
+              size="2"
+              class="slds-var-p-around_x-small cards-poke"
+            >
+              <c-pokemon-tile
+                pokemon={pokemon}
+                onpokemonview={handlePokemonView}
+              ></c-pokemon-tile>
+            </lightning-layout-item>
+          </template>
+        </lightning-layout>
+
+        <!-- No bears found -->
+        <template if:false={hasResults}>
+          <div class="slds-align_absolute-center slds-var-m-vertical_small">
+            We did not find results...
+          </div>
+        </template>
+      </template>
+
+      <template if:true={pokemons.error}>
+        <div class="slds-text-color_error">
+          An error occurred while loading the bear list {pokemons.error}
+        </div>
+      </template>
+    </div>
+  </lightning-card>
 </template>

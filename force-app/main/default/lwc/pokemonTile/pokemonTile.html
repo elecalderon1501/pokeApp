@@ -1,8 +1,9 @@
 <template>
-  <lightning-card title={pokemon.Name} class="pokemon-tile">
-    <div class="slds-var-p-horizontal_small pokemon-tile-body">
+  <div class="card-poke">
+    <lightning-card title={pokemon.Name} class="card-poke">
+    <div class="slds-var-p-horizontal_small ">
       <div class="slds-media_center">
-        <div class="slds-media__figure" onclick={handleOpenRecordClick}>
+        <div class="slds-media__figure " onclick={handleOpenRecordClick}>
           <img src={pokemon.Foto_URL__c} alt="pokemon profile" />
         </div>
         <div class="slds-media__body">
@@ -11,11 +12,12 @@
           <p class="slds-var-m-bottom_xx-small">Altura: {pokemon.Altura__c}</p>
           <p class="slds-var-m-bottom_xx-small">Peso: {pokemon.Peso__c}</p>
           <p class="slds-var-m-bottom_xx-small">Tipo: {pokemon.Tipo__c}</p>
-          <p class="slds-var-m-bottom_xx-small">
+          <p class="slds-var-m-bottom_x-small">
             Generacion: {pokemon.Generacion__c}
           </p>
         </div>
       </div>
     </div>
   </lightning-card>
+  </div>
 </template>

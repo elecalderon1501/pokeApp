@@ -1,0 +1,27 @@
+/* #7ED0D9
+#EAF205
+#F2A81D
+#F27405
+#F21905 */
+
+*{
+    background-color:#7ED0D9 ;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+ 
+.search-and-filter{
+    width: 50vh;
+    display: inline-flex;
+    margin: 1vh;
+}
+
+
+.contador{
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: medium;
+    font-weight: bolder;
+    margin: 3vh;
+}
+.cards-poke{
+    background-color: #F2A81D;
+}
