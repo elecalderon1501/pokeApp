@@ -20,11 +20,9 @@ public with sharing class pokemonController {
 
     @AuraEnabled(Cacheable=true)
     public static Pokemon__c[] searchPokemons(String tipo, Integer generacion, String searchTerm) {
-        // Return all bears when no search term
+        // Return all pokemons when no search term
         searchTerm = searchTerm.trim();
-        // if (String.isBlank(searchTerm) && String.isBlank(tipo) && generacion ==0) {
-        //     return getAllPokemons();
-        // }
+       
             if(searchTerm == '' && tipo == 'Todos' && generacion == 0){
                 return getAllPokemons();
                 

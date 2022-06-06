@@ -1,5 +1,7 @@
-   
-  .card-poke{
-  border-radius: 10%;
-  margin: 0;
+.card-poke{
+background-color: #F2A81D;
+box-shadow: 5vh grey;
+display: block;
 }
+
+/* No toma esta clase en la card */

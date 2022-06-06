@@ -1,13 +1,17 @@
 <template>
-  <div class="card-poke">
-    <lightning-card title={pokemon.Name} class="card-poke">
-    <div class="slds-var-p-horizontal_small ">
+  <lightning-card title={pokemon.Name} class="card-poke">
+    <!-- no me toma la clase card-poke -->
+    <div class="slds-var-p-horizontal_small">
       <div class="slds-media_center">
-        <div class="slds-media__figure " onclick={handleOpenRecordClick}>
-          <img src={pokemon.Foto_URL__c} alt="pokemon profile" />
+        <div class="slds-media__figure" onclick={handleOpenRecordClick}>
+          <img
+            src={pokemon.Foto_URL__c}
+            alt="pokemon profile"
+            class="slds-var-m-around_medium"
+          />
         </div>
         <div class="slds-media__body">
-          <p class="slds-var-m-bottom_xx-small">{pokemon.Name}</p>
+          <!-- <p class="slds-var-m-bottom_xx-small">{pokemon.Name}</p> -->
           <p class="slds-var-m-bottom_xx-small">{pokemon.PokeIndex__c}</p>
           <p class="slds-var-m-bottom_xx-small">Altura: {pokemon.Altura__c}</p>
           <p class="slds-var-m-bottom_xx-small">Peso: {pokemon.Peso__c}</p>
@@ -19,5 +23,4 @@
       </div>
     </div>
   </lightning-card>
-  </div>
 </template>

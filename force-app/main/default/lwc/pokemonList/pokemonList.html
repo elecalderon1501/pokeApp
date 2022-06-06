@@ -1,55 +1,51 @@
 <template>
-  <lightning-card title="Pokemons" >
+  <lightning-card title="Pokemons">
     <div class="slds-card__body_inner">
       <template if:true={pokemons.data}>
         <div class="slds-var-m-around_medium search-and-filter">
           <lightning-layout-item class="search-and-filter">
             <!-- Search -->
-            <div >
+            <div>
               <lightning-input
-              type="search"
-              onchange={handleSearchTermChange}
-              variant="label-hidden"
-              class="slds-var-m-bottom_small search-and-filter"
-              label="Search"
-              placeholder="Search for pokemons"
-              value={searchTerm}
-            >
-            </lightning-input>
+                type="search"
+                onchange={handleSearchTermChange}
+                variant="label-hidden"
+                class="slds-var-m-bottom_small search-and-filter"
+                label="Search"
+                placeholder="Search for pokemons"
+                value={searchTerm}
+              >
+              </lightning-input>
             </div>
 
             <!-- filtro generacion -->
             <div>
               <lightning-combobox
-              name="generacion"
-              label="Generacion"
-              value={generacion}
-              placeholder="Seleccione generacion"
-              options={generaciones}
-              onchange={handleGeneracionChange}
-              class="search-and-filter"
-              
-            >
-            </lightning-combobox>
+                name="generacion"
+                label="Generacion"
+                value={generacion}
+                placeholder="Seleccione generacion"
+                options={generaciones}
+                onchange={handleGeneracionChange}
+                class="search-and-filter"
+              >
+              </lightning-combobox>
             </div>
-
-            <!-- <p>Selected value is: {value}</p>  -->
 
             <!-- filtro tipo -->
-            <div >
+            <div>
               <lightning-combobox
-              name="tipo"
-              label="Tipo"
-              value={tipo}
-              placeholder="Seleccione tipo"
-              options={tipos}
-              onchange={handleTipoChange}
-              class="search-and-filter"
-            >
-            </lightning-combobox>
+                name="tipo"
+                label="Tipo"
+                value={tipo}
+                placeholder="Seleccione tipo"
+                options={tipos}
+                onchange={handleTipoChange}
+                class="search-and-filter"
+              >
+              </lightning-combobox>
             </div>
 
-            <!-- <p>Selected value is: {value}</p>  -->
             <div class="contador">Cant={pokemons.data.length}</div>
           </lightning-layout-item>
         </div>
