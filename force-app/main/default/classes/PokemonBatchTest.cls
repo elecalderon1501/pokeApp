@@ -219,7 +219,7 @@ public with sharing class PokemonBatchTest {
     static void testGeneracionEight(){
         pokLst.add(new Pokemon__c(name = 'https://pokeapi.co/api/v2/pokemon/810'));
 
-        String body = '{"name": "grookey","height": 3,"weight": 50,"sprites":{"front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/810.png"}, "types":[{"slot":1,"type":{"name": "grass"}}],"id": 810}';
+        String body = '{"name": "grookey","height": 3,"weight": 50,"sprites":"other"{"home"{"front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/810.png"}}}, "types":[{"slot":1,"type":{"name": "grass"}}],"id": 810}';
 
         PokemonBatchMock fakeResponse = new PokemonBatchMock(200, 'Complete', body, null);
 
@@ -236,7 +236,7 @@ public with sharing class PokemonBatchTest {
         System.assertEquals(listaDB[0].Name, 'Grookey');
         System.assertEquals(listaDB[0].Altura__c, '3 (ft)');
         System.assertEquals(listaDB[0].Peso__c, '50 (lb)');
-        System.assertEquals(listaDB[0].Foto_URL__c, 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/810.png');
+        System.assertEquals(listaDB[0].Foto_URL__c, 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/810.png');
         System.assertEquals(listaDB[0].Tipo__c, 'Grass');
         System.assertEquals(listaDB[0].Generacion__c, 8);
         System.assertEquals(listaDB[0].PokeIndex__c, 810);

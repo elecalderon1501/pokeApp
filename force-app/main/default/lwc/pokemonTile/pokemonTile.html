@@ -1,5 +1,5 @@
 <template>
-  <lightning-card title={pokemon.Name} class="card-poke">
+  <lightning-card title={pokemon.Name} class="pokemon-tile">
     <!-- no me toma la clase card-poke -->
     <div class="slds-var-p-horizontal_small">
       <div class="slds-media_center">
@@ -12,7 +12,7 @@
         </div>
         <div class="slds-media__body">
           <!-- <p class="slds-var-m-bottom_xx-small">{pokemon.Name}</p> -->
-          <p class="slds-var-m-bottom_xx-small">{pokemon.PokeIndex__c}</p>
+          <p class="slds-var-m-bottom_xx-small ">{pokemon.PokeIndex__c}</p>
           <p class="slds-var-m-bottom_xx-small">Altura: {pokemon.Altura__c}</p>
           <p class="slds-var-m-bottom_xx-small">Peso: {pokemon.Peso__c}</p>
           <p class="slds-var-m-bottom_xx-small">Tipo: {pokemon.Tipo__c}</p>

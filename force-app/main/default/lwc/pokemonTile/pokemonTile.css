@@ -1,7 +1,34 @@
-.card-poke{
+/* .pokemon-tile{
 background-color: #F2A81D;
 box-shadow: 5vh grey;
 display: block;
+} */
+@keyframes texto {
+  0% {
+    color: #FD4977;
+  }
+  25% {
+    color: #f27405;
+  }
+  50% {
+    color: #f2a81d;
+  }
+  75% {
+    color: #5BA415;
+  }
+  100% {
+    color: #7ed0d9;
+  }
+}
+
+.slds-media__body {
+  font-weight: bolder;
+  animation-name: texto;
+  animation-duration: 3s;
+  animation-iteration-count: infinite;
+}
+.slds-media__body:hover{
+    color: #FD4977;
 }
 
 /* No toma esta clase en la card */
