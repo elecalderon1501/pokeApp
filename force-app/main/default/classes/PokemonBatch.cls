@@ -25,7 +25,7 @@ global class PokemonBatch implements Database.Batchable<Pokemon__c>, Database.Al
          Pokemon__c pokemonObject = new Pokemon__c();
          pokemonObject.Name = pok.name.Capitalize();
          pokemonObject.Altura__c = pok.height.format() + ' (ft)';
-         pokemonObject.Foto_URL__c= pok.sprites.other.home.front_default ; //capital: el.capital ? el.capital[0] : ' ',
+         pokemonObject.Foto_URL__c= (pok.sprites.other.home.front_default == null) ?  pok.sprites.front_default : pok.sprites.other.home.front_default; 
          pokemonObject.Peso__c = pok.weight + ' (lb)';
          pokemonObject.PokeIndex__c = pok.id;
  

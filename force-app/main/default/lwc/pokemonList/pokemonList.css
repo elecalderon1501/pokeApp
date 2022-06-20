@@ -21,8 +21,21 @@
     "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
   font-size: medium;
   font-weight: bolder;
-  margin: 3vh;
+  margin: 1vh;
+  border-radius: 2vh;
+  background-color: rgb(217, 216, 216);
+  padding: 1vh;
+  box-shadow: 1vh black;
 }
+
+.texto_error{
+  color: #FD4977;
+  font-size: 10vh;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-weight: bolder;
+  text-shadow: 5vh black;
+}
+
 /* .cards-poke {
   background-color: #f2a81d;
 } */

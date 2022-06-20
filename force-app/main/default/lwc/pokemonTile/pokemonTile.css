@@ -5,10 +5,10 @@ display: block;
 } */
 @keyframes texto {
   0% {
-    color: #FD4977;
+    color: #5BA415;
   }
   25% {
-    color: #f27405;
+    color: #7ed0d9;
   }
   50% {
     color: #f2a81d;
@@ -30,5 +30,6 @@ display: block;
 .slds-media__body:hover{
     color: #FD4977;
 }
+
 
 /* No toma esta clase en la card */
