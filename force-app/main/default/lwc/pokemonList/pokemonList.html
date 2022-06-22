@@ -47,8 +47,6 @@
             </div>
 
             <div class="contador">Cant={pokemons.data.length}</div>
-
-
           </lightning-layout-item>
         </div>
         <lightning-layout multiple-rows="true" pull-to-boundary="small">
@@ -72,8 +70,10 @@
 
         <!-- No bears found -->
         <template if:false={hasResults}>
-          <div class="slds-align_absolute-center slds-var-m-vertical_small texto_error">
-            We did not find results...            
+          <div
+            class="slds-align_absolute-center slds-var-m-vertical_small texto_error"
+          >
+            We did not find results...
           </div>
         </template>
       </template>

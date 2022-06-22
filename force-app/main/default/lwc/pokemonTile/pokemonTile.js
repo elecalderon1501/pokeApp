@@ -1,14 +1,11 @@
-import { LightningElement, api } from 'lwc';
-//import ursusResources from '@salesforce/resourceUrl/ursus_park';
+import { LightningElement, api } from "lwc";
 export default class PokemonTile extends LightningElement {
-	@api pokemon;
-	// appResources = {
-	// 	bearSilhouette: `${ursusResources}/img/standing-bear-silhouette.png`,
-	// };
-    handleOpenRecordClick() {
-        const selectEvent = new CustomEvent('pokemonview', {
-            detail: this.pokemon.Id
-        });
-        this.dispatchEvent(selectEvent);
-    }
+  @api pokemon;
+
+  handleOpenRecordClick() {
+    const selectEvent = new CustomEvent("pokemonview", {
+      detail: this.pokemon.Id
+    });
+    this.dispatchEvent(selectEvent);
+  }
 }

@@ -1,7 +1,6 @@
 import { NavigationMixin } from "lightning/navigation";
 import { LightningElement, wire } from "lwc";
 import searchPokemons from "@salesforce/apex/PokemonController.searchPokemons";
-//import getAllPokemons from "@salesforce/apex/pokemonController.getAllPokemons";
 export default class pokemonList extends NavigationMixin(LightningElement) {
   tipo = "Todos";
   generacion = "0";
@@ -77,7 +76,7 @@ export default class pokemonList extends NavigationMixin(LightningElement) {
       this.tipo = tipo;
     }, 300);
   }
-  
+
   get hasResults() {
     console.log(this.pokemons);
     return this.pokemons.data.length > 0;
